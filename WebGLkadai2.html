@@ -41,20 +41,14 @@
     var mat = new THREE.MeshPhongMaterial();
     mat.map = texture;
 
-
-
     // 箱を作成
     var geometry = new THREE.BoxGeometry(2, 2, 2);
-    //var material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
-    //var box = new THREE.Mesh(geometry, material);
     var box1 = new THREE.Mesh(geometry, mat);
     box1.receiveShadow = true; 
     box1.position.set(0,-2,0);
    
 
     var geometry1 = new THREE.BoxGeometry(3, 0.4, 3);
-    //var material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
-    //var box = new THREE.Mesh(geometry, material);
     var box2 = new THREE.Mesh(geometry1, mat);
     box2.receiveShadow = true; 
     //box.scale.y = ;
@@ -68,18 +62,14 @@
 
     //一番下の餅
     var sphereGeometry = new THREE.SphereGeometry( 1, 50, 50 ); 
-    //半径、垂直方向の分割数、水平方向の分割数
-    //var sphereMaterial = new THREE. MeshPhongMaterial( {color: 0XFFFFFF,} );   
+    //半径、垂直方向の分割数、水平方向の分割数   
     var sphere1 = new THREE.Mesh( sphereGeometry, mat );
     sphere1.castShadow = true; 
-    //sphere1.receiveShadow = true;
     sphere1.scale.y = 0.5 ;
     sphere1.position.set( 0, -0.8, 0 );
   
     //下から二番目の餅
-    var sphereGeometry = new THREE.SphereGeometry( 0.8, 50, 50 ); 
-    //半径、垂直方向の分割数、水平方向の分割数
-    //var sphereMaterial = new THREE. MeshPhongMaterial( {color: 0XFFFFFF,} );   
+    var sphereGeometry = new THREE.SphereGeometry( 0.8, 50, 50 );    
     var sphere2 = new THREE.Mesh( sphereGeometry, mat );
     sphere2.castShadow = true; 
     sphere2.receiveShadow = true;
@@ -97,8 +87,6 @@
 
     //みかん半径、垂直方向の分割数、水平方向の分割数
     var sphereGeometry = new THREE.SphereGeometry( 0.3, 50, 50 ); 
-    //var sphereMaterial = new THREE. MeshPhongMaterial( {color: 0XFF8C00,} );   
-    //var sphere3 = new THREE.Mesh( sphereGeometry, sphereMaterial );
     var sphere3 = new THREE.Mesh( sphereGeometry, mat );
     sphere3.castShadow = true; 
     sphere3.receiveShadow = true;
@@ -147,18 +135,15 @@
 
   // 平行光源(色、強さ）補助光源
   var directionalLight1 = new THREE.DirectionalLight(0xffffff,1);
-  directionalLight1.position.set(10, 10, 0);
+  directionalLight1.position.set(0, 0, 0);
   // シーンに追加
   scene.add(directionalLight1);
 
- // 照明を作成SpotLight(              色, 光の強さ, 距離, 照射角, ボケ具合, 減衰率)
+ // 照明を作成SpotLight(            色, 光の強さ, 距離, 照射角, ボケ具合, 減衰率)
   var light = new THREE.SpotLight(0xffffff, 1, 100, Math.PI / 6, 0.1);
   light.position.set(10,10, -5);
-  //light.target.position.set( 0, 5, -100 );
   // ライトに影を有効にする
   light.castShadow = true;
-  //light.shadow.mapSize.width = 2048;
-  //light.shadow.mapSize.height = 2048;
   scene.add(light);
 
 
