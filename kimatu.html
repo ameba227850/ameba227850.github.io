@@ -22,6 +22,7 @@
           canvas: document.querySelector('#myCanvas')
         });
         renderer.setSize(width, height);
+        renderer.shadowMap.enabled = true;
 
         // シーンを作成
         const scene = new THREE.Scene();
@@ -49,24 +50,170 @@
         var mat = new THREE.MeshPhongMaterial();
         mat.map = texture;
 
-        var sunsphere = new THREE.SphereGeometry( 60, 50, 50 ); 
+        var sunsphere = new THREE.SphereGeometry( 40, 50, 50 ); 
         //半径、垂直方向の分割数、水平方向の分割数
         var sunsphere = new THREE.Mesh( sunsphere, mat );
         sunsphere.position.set( 0, 0, 0 );
 
+        //球2　水星
+
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/mer.png');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        var Mersphere = new THREE.SphereGeometry( 3, 50, 50 ); 
+        var Mersphere = new THREE.Mesh( Mersphere, mat );
+        Mersphere.castShadow = true;
+        Mersphere.position.set( 80, 0, 0 );
+
+        //球2　金星
+
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/Venus.png');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        var Vensphere = new THREE.SphereGeometry( 19, 50, 50 ); 
+        var Vensphere = new THREE.Mesh( Vensphere, mat );
+        Vensphere.castShadow = true;
+        Vensphere.receiveShadow = true;
+        
+        Vensphere.position.set( 110, 0, 0 );
 
 
-         //全体のオブジェクト
-        const all = new THREE.Group()
-        all.add(sunsphere); // 太陽を追加
 
-        scene.add(all);
+        //球3　地球
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/Earth.jpeg');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        var Earsphere = new THREE.SphereGeometry( 23, 50, 50 ); 
+        var Earsphere = new THREE.Mesh( Earsphere, mat );
+        //Earsphere.rotation.x = 0.3;
+        Earsphere.castShadow = true;
+        Earsphere.receiveShadow = true;
+        Earsphere.position.set( 0, 0, 0 );
+        
+        //球3-1　月
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/Moon.jpg');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        var Moonphere = new THREE.SphereGeometry(8, 50, 50 ); 
+        var Moonphere = new THREE.Mesh( Moonphere, mat );
+        Moonphere.castShadow = true;
+        Moonphere.receiveShadow = true;
+        Moonphere.position.set( 35, 0, 0 );
+
+
+        //球3　火星
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/Mars.jpg');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        var Marsphere = new THREE.SphereGeometry( 12, 50, 50 ); 
+        var Marsphere = new THREE.Mesh( Marsphere, mat );
+        Moonphere.castShadow = true;
+        Marsphere.receiveShadow = true;
+        Marsphere.position.set( 200, 0, 0 );
+
+        //球3　木星
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/Jupiter.jpg');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        var Jupsphere = new THREE.SphereGeometry( 30, 50, 50 ); 
+        var Jupsphere= new THREE.Mesh( Jupsphere, mat );
+        Jupsphere.castShadow = true;
+        Jupsphere.receiveShadow = true;
+        Jupsphere.position.set( 300, 0, 0 );
+
+        //球4　土星
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/Saturn.jpg');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        var Satsphere = new THREE.SphereGeometry( 28, 50, 50 ); 
+        var Satsphere= new THREE.Mesh( Satsphere, mat );
+        Satsphere.castShadow = true;
+        Satsphere.receiveShadow = true;
+        Satsphere.position.set( 0, 0, 400 );
+
+        //輪っか
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load('./textures/Saturn_ring.png');
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+        
+
+        var torusGeometry = new THREE.TorusGeometry(50, 10, 50, 50 ); 
+        //半径、ドーナッツの太さ、ドーナッツのチューブ方向の分割数、水平方向の分割数
+        var torus = new THREE.Mesh( torusGeometry, mat );
+        torus.rotation.x = 1.75
+        torus.position.set( 0, 0, 400);
+
+
+
+
+        //真ん中に設置するオブジェクト
+        var s2 = new THREE.SphereGeometry( 1, 1,1  ); 
+        var s2 = new THREE.Mesh( s2, mat );
+        s2.position.set( 0, 0, 0 );
+
+        //グループ
+        const g1 = new THREE.Group()
+        g1.add(sunsphere);
+        g1.add(Mersphere);
+        scene.add(g1);
+
+        const g2 = new THREE.Group()
+        g2.add(Vensphere);
+        g2.add(s2);
+        scene.add(g2);
+
+        const earthmoon = new THREE.Group()
+        earthmoon.add(Earsphere);
+        earthmoon.add(Moonphere);
+        earthmoon.position.set(160,0,0);
+
+        
+        const g3 = new THREE.Group()
+        g3.add(earthmoon);
+        g3.add(s2);
+        scene.add(g3);
+
+        const g4 = new THREE.Group()
+        g4.add(Marsphere);
+        g4.add(s2);
+        scene.add(g4);
+
+        const g5 = new THREE.Group()
+        g5.add(Jupsphere);
+        g5.add(s2);
+        scene.add(g5);
+
+        const Sat = new THREE.Group()
+        Sat.add(Satsphere);
+        Sat.add(torus);
+
+        const g6 = new THREE.Group()
+        g6.add(Sat);
+        g6.add(s2);
+        scene.add(g6);
+
+
 
         //　炎の作成
         VolumetricFire.texturePath = './textures/';
-        var fireWidth  = 300;
-        var fireHeight = 400;
-        var fireDepth  = 100;
+        var fireWidth  = 150;
+        var fireHeight = 200;
+        var fireDepth  = 200;
         var sliceSpacing = 80;
 
         var fire = new VolumetricFire(
@@ -78,7 +225,7 @@
         );
         scene.add( fire.mesh );
 
-        fire.mesh.position.set( 0, (fireHeight / 2)-80, 0 );
+        fire.mesh.position.set( 0, (fireHeight / 2)-40, 0 );
 
 
 
@@ -87,7 +234,7 @@
 
 
 
-        // 星屑を作成します (カメラの動きをわかりやすくするため)
+        // 星屑
         createStarField();
 
         function createStarField() {
@@ -96,7 +243,7 @@
         // 配置する範囲
         const SIZE = 10000;
         // 配置する個数
-        const LENGTH = 20000;
+        const LENGTH = 100000;
         for (let i = 0; i < LENGTH; i++) {
             geometry.vertices.push(
             new THREE.Vector3(
@@ -119,11 +266,19 @@
         scene.add(mesh);
         }
 
+        // フォグを設定
+        // new THREE.Fog(色, 開始距離, 終点距離);
+        scene.fog = new THREE.Fog(0x000000, 0, 3000);
+
 
         //光源（環境光）
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
         scene.add(ambientLight);
-
+        
+        //点光源
+        const light = new THREE.PointLight(0xFFFFFF, 1.6, 50, 0);
+        light.castShadow = true;
+        scene.add(light);
 
         tick();
 
@@ -131,10 +286,26 @@
         function tick() {
           // レンダリング
           requestAnimationFrame( tick );
-
           var elapsed = clock.getElapsedTime();
-
           fire.update( elapsed );
+
+          sunsphere.rotation.y-= 0.037;
+          Mersphere.rotation.y-= 0.04;
+          Vensphere.rotation.y-= 0.02;
+          Earsphere.rotation.y-=0.05;
+          Moonphere.rotation.y-=0.1;
+          Marsphere.rotation.y+= 0.05;
+          Jupsphere.rotation.y+=0.15;
+          Satsphere.rotation.y+=0.08;
+
+          g1.rotation.y += 0.035  //水生
+          g2.rotation.y += 0.013  //金星
+          g3.rotation.y += 0.009  //地球
+          earthmoon.rotation.y +=0.1  //地球
+          g4.rotation.y += 0.005  //火星
+          g5.rotation.y += 0.001  //木星
+          g6.rotation.y += 0.001  //土星
+
           renderer.render(scene, camera);
         }
       }
