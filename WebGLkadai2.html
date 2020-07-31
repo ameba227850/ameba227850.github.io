@@ -134,10 +134,8 @@
     scene.add(all); 
 
   // 平行光源(色、強さ）補助光源
-  var directionalLight1 = new THREE.DirectionalLight(0xffffff,1);
-  directionalLight1.position.set(0, 0, 0);
-  // シーンに追加
-  scene.add(directionalLight1);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+  scene.add(ambientLight);
 
  // 照明を作成SpotLight(            色, 光の強さ, 距離, 照射角, ボケ具合, 減衰率)
   var light = new THREE.SpotLight(0xffffff, 1, 100, Math.PI / 6, 0.1);
@@ -162,5 +160,9 @@ update();
 }
   window.addEventListener('DOMContentLoaded', init);
 </script>
+
+<h1><a href="Index.html">戻る</a><br>
+    <a href="CG課題2レポート_1832156.pdf">レポート</a><br>
+<h1>
 </body>
 </html>
