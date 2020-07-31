@@ -26,6 +26,7 @@
 
         // シーンを作成
         const scene = new THREE.Scene();
+        scene.background = new THREE.Color( 0x000035 );
 
         // フォグを設定
         // new THREE.Fog(色, 開始距離, 終点距離);
@@ -85,8 +86,6 @@
         
         Vensphere.position.set( 110, 0, 0 );
 
-
-
         //球3　地球
         var textureLoader = new THREE.TextureLoader();  
         var texture = textureLoader.load('./textures/Earth.jpeg');
@@ -110,8 +109,7 @@
         var Moonphere = new THREE.Mesh( Moonphere, mat );
         Moonphere.castShadow = true;
         Moonphere.receiveShadow = true;
-        Moonphere.position.set( 35, 0, 0 );
-
+        Moonphere.position.set( 0, 35, 0 );
 
         //球3　火星
         var textureLoader = new THREE.TextureLoader();  
@@ -161,9 +159,6 @@
         var torus = new THREE.Mesh( torusGeometry, mat );
         torus.rotation.x = 1.75
         torus.position.set( 0, 0, 440);
-
-
-
 
         //真ん中に設置するオブジェクト
         var s2 = new THREE.SphereGeometry( 1, 1,1  ); 
@@ -282,7 +277,8 @@
           sunsphere.rotation.y-= 0.03;
           Mersphere.rotation.y-= 0.02;
           Vensphere.rotation.y-= 0.01;
-          Earsphere.rotation.y-=0.025;
+          Earsphere.rotation.y+=0.025;
+          Earsphere.rotation.x -= 0.05  //地球
           Moonphere.rotation.y-=0.05;
           Marsphere.rotation.y+= 0.025;
           Jupsphere.rotation.y+=0.08;
@@ -291,7 +287,7 @@
           g1.rotation.y += 0.018  //水生
           g2.rotation.y += 0.0165  //金星
           g3.rotation.y += 0.0045  //地球
-          earthmoon.rotation.y +=0.05  //地球
+          earthmoon.rotation.x +=0.05  //地球
           g4.rotation.y += 0.0025  //火星
           g5.rotation.y += 0.0005  //木星
           g6.rotation.y += 0.0005  //土星
@@ -304,8 +300,8 @@
   </head>
   <body>
     <canvas id="myCanvas"></canvas>
-    <h1><a href="Index.html">戻る</a><br>
-      <a href="CG課題2レポート_1832156.pdf"target = "_blank">CG課題2レポート_1832156.pdf</a><br>
+    <h1><a href="https://ameba227850.github.io/">戻る</a><br>
+      <a href="CG最終課題レポート_1832156.pdf"target = "_blank">CG最終課題レポート_1832156.pdf</a><br>
   <h1>
   </body>
 </html>
