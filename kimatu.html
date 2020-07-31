@@ -273,24 +273,25 @@
           requestAnimationFrame( tick );
           var elapsed = clock.getElapsedTime();
           fire.update( elapsed );
+          
 
           sunsphere.rotation.y-= 0.03;
           Mersphere.rotation.y-= 0.02;
           Vensphere.rotation.y-= 0.01;
           Earsphere.rotation.y+=0.025;
-          Earsphere.rotation.x -= 0.05  //地球
-          Moonphere.rotation.y-=0.05;
+          Earsphere.rotation.x -= 0.012  //地球
+          Moonphere.rotation.y-=0.025;
           Marsphere.rotation.y+= 0.025;
           Jupsphere.rotation.y+=0.08;
           Satsphere.rotation.y+=0.04;
 
-          g1.rotation.y += 0.018  //水生
-          g2.rotation.y += 0.0165  //金星
-          g3.rotation.y += 0.0045  //地球
-          earthmoon.rotation.x +=0.05  //地球
-          g4.rotation.y += 0.0025  //火星
-          g5.rotation.y += 0.0005  //木星
-          g6.rotation.y += 0.0005  //土星
+          g1.rotation.y += 0.015 //水生
+          g2.rotation.y += 0.008  //金星
+          g3.rotation.y += 0.002  //地球
+          earthmoon.rotation.x +=0.012  //地球
+          g4.rotation.y += 0.001  //火星
+          g5.rotation.y += 0.00025  //木星
+          g6.rotation.y += 0.0002  //土星
 
           renderer.render(scene, camera);
         }
