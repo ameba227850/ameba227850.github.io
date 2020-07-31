@@ -279,20 +279,20 @@
           Mersphere.rotation.y-= 0.02;
           Vensphere.rotation.y-= 0.01;
           Earsphere.rotation.y+=0.012;
-          Earsphere.rotation.x -= 0.006;  //地球
-          //Moonsphere.rotation.x -= 0.006;  //月
+          Earsphere.rotation.x -= 0.003;  //地球
+          Moonphere.rotation.x-=0.0003;
           Moonphere.rotation.y-=0.025;
           Marsphere.rotation.y+= 0.025;
           Jupsphere.rotation.y+=0.05;
           Satsphere.rotation.y+=0.04;
 
-          g1.rotation.y += 0.015 //水星
-          g2.rotation.y += 0.008  //金星
-          g3.rotation.y += 0.002  //地球
-          earthmoon.rotation.x +=0.006  //地球
-          g4.rotation.y += 0.001  //火星
-          g5.rotation.y += 0.00025  //木星
-          g6.rotation.y += 0.0002  //土星
+          g1.rotation.y += 0.01 //水星
+          g2.rotation.y += 0.006  //金星
+          g3.rotation.y += 0.001  //地球
+          earthmoon.rotation.x +=0.003  //地球
+          g4.rotation.y += 0.0006  //火星
+          g5.rotation.y += 0.00015  //木星
+          g6.rotation.y += 0.0001  //土星
 
           renderer.render(scene, camera);
         }
