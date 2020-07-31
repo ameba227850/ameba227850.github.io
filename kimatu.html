@@ -27,21 +27,26 @@
         // シーンを作成
         const scene = new THREE.Scene();
 
+        // フォグを設定
+        // new THREE.Fog(色, 開始距離, 終点距離);
+        scene.fog = new THREE.Fog(0x000000, 0, 2300);
+
         // カメラを作成
         const camera = new THREE.PerspectiveCamera(45, width / height);
         // カメラの初期座標を設定
-        camera.position.set(0, 0, 1000);
+        camera.position.set(0, 300, 1000);
 
         // カメラコントローラーを作成
         const controls = new THREE.OrbitControls(camera);
         controls.autoRotate = true;
 
         // helper
+        /*
         const gridHelper = new THREE.GridHelper(1000,20); // size, step
         scene.add(gridHelper);
         const axisHelper = new THREE.AxisHelper(1000); //軸の長さ　X：赤、Y：緑、z：青
         scene.add(axisHelper);
-
+        */
 
         //球1 太陽
         // テクスチャーを読み込み
@@ -56,7 +61,6 @@
         sunsphere.position.set( 0, 0, 0 );
 
         //球2　水星
-
         var textureLoader = new THREE.TextureLoader();  
         var texture = textureLoader.load('./textures/mer.png');
         var mat = new THREE.MeshPhongMaterial();
@@ -119,7 +123,7 @@
         var Marsphere = new THREE.Mesh( Marsphere, mat );
         Moonphere.castShadow = true;
         Marsphere.receiveShadow = true;
-        Marsphere.position.set( 200, 0, 0 );
+        Marsphere.position.set( 240, 0, 0 );
 
         //球3　木星
         var textureLoader = new THREE.TextureLoader();  
@@ -131,7 +135,7 @@
         var Jupsphere= new THREE.Mesh( Jupsphere, mat );
         Jupsphere.castShadow = true;
         Jupsphere.receiveShadow = true;
-        Jupsphere.position.set( 300, 0, 0 );
+        Jupsphere.position.set( 340, 0, 0 );
 
         //球4　土星
         var textureLoader = new THREE.TextureLoader();  
@@ -143,7 +147,7 @@
         var Satsphere= new THREE.Mesh( Satsphere, mat );
         Satsphere.castShadow = true;
         Satsphere.receiveShadow = true;
-        Satsphere.position.set( 0, 0, 400 );
+        Satsphere.position.set( 0, 0, 440 );
 
         //輪っか
         var textureLoader = new THREE.TextureLoader();  
@@ -156,7 +160,7 @@
         //半径、ドーナッツの太さ、ドーナッツのチューブ方向の分割数、水平方向の分割数
         var torus = new THREE.Mesh( torusGeometry, mat );
         torus.rotation.x = 1.75
-        torus.position.set( 0, 0, 400);
+        torus.position.set( 0, 0, 440);
 
 
 
@@ -180,7 +184,7 @@
         const earthmoon = new THREE.Group()
         earthmoon.add(Earsphere);
         earthmoon.add(Moonphere);
-        earthmoon.position.set(160,0,0);
+        earthmoon.position.set(180,0,0);
 
         
         const g3 = new THREE.Group()
@@ -207,8 +211,6 @@
         g6.add(s2);
         scene.add(g6);
 
-
-
         //　炎の作成
         VolumetricFire.texturePath = './textures/';
         var fireWidth  = 150;
@@ -226,13 +228,6 @@
         scene.add( fire.mesh );
 
         fire.mesh.position.set( 0, (fireHeight / 2)-40, 0 );
-
-
-
-
-
-
-
 
         // 星屑
         createStarField();
@@ -266,11 +261,6 @@
         scene.add(mesh);
         }
 
-        // フォグを設定
-        // new THREE.Fog(色, 開始距離, 終点距離);
-        scene.fog = new THREE.Fog(0x000000, 0, 3000);
-
-
         //光源（環境光）
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
         scene.add(ambientLight);
@@ -289,29 +279,33 @@
           var elapsed = clock.getElapsedTime();
           fire.update( elapsed );
 
-          sunsphere.rotation.y-= 0.037;
-          Mersphere.rotation.y-= 0.04;
-          Vensphere.rotation.y-= 0.02;
-          Earsphere.rotation.y-=0.05;
-          Moonphere.rotation.y-=0.1;
-          Marsphere.rotation.y+= 0.05;
-          Jupsphere.rotation.y+=0.15;
-          Satsphere.rotation.y+=0.08;
+          sunsphere.rotation.y-= 0.03;
+          Mersphere.rotation.y-= 0.02;
+          Vensphere.rotation.y-= 0.01;
+          Earsphere.rotation.y-=0.025;
+          Moonphere.rotation.y-=0.05;
+          Marsphere.rotation.y+= 0.025;
+          Jupsphere.rotation.y+=0.08;
+          Satsphere.rotation.y+=0.04;
 
-          g1.rotation.y += 0.035  //水生
-          g2.rotation.y += 0.013  //金星
-          g3.rotation.y += 0.009  //地球
-          earthmoon.rotation.y +=0.1  //地球
-          g4.rotation.y += 0.005  //火星
-          g5.rotation.y += 0.001  //木星
-          g6.rotation.y += 0.001  //土星
+          g1.rotation.y += 0.018  //水生
+          g2.rotation.y += 0.0165  //金星
+          g3.rotation.y += 0.0045  //地球
+          earthmoon.rotation.y +=0.05  //地球
+          g4.rotation.y += 0.0025  //火星
+          g5.rotation.y += 0.0005  //木星
+          g6.rotation.y += 0.0005  //土星
 
           renderer.render(scene, camera);
         }
+
       }
     </script>
   </head>
   <body>
     <canvas id="myCanvas"></canvas>
+    <h1><a href="Index.html">戻る</a><br>
+      <a href="CG課題2レポート_1832156.pdf"target = "_blank">CG課題2レポート_1832156.pdf</a><br>
+  <h1>
   </body>
 </html>
